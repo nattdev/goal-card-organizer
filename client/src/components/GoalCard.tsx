@@ -1,4 +1,4 @@
-import { GoalCards } from "../App";
+import { GoalCards } from "../context/GoalsContext";
 
 type Props = {
     card: GoalCards;
