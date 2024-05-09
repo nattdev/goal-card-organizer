@@ -75,6 +75,7 @@ function GoalCard({ card }: Props) {
                 <ul>
                     {card.taskList.map((task, index) => (
                         <li key={index}>
+                            <span>🗑️</span>
                             <input type="text" defaultValue={task.content} onBlur={(e) => handleOnBlurTask(e)}></input>
                             <span onClick={() => handleIsComplete(task.id)}>{task.isComplete ? "✅" : "No Complete"}</span>
                         </li>
