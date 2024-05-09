@@ -30,6 +30,28 @@ function GoalCard({ card }: Props) {
         console.log(e.target.value);
     }
 
+    function handleIsComplete(taskId: number) {
+        const updatedGoalCards = goalCards.map((goalCard) => {
+            if (goalCard.id === card.id) {
+                const updatedTaskList = goalCard.taskList.map((task) => {
+                    if (task.id === taskId) {
+                        return {
+                            ...task,
+                            isComplete: !task.isComplete
+                        };
+                    }
+                    return task;
+                });
+                return {
+                    ...goalCard,
+                    taskList: updatedTaskList
+                };
+            }
+            return goalCard;
+        });
+        setGoalCards(updatedGoalCards);
+    }
+
     return (
         <div>
             <div>{card.isComplete ? "Complete" : "No Complete"}</div>
@@ -41,8 +63,7 @@ function GoalCard({ card }: Props) {
                     {card.taskList.map((task, index) => (
                         <li key={index}>
                             <input type="text" defaultValue={task.content} onBlur={(e) => handleOnBlur(e)}></input>
-                            <p>{task.content}</p>
-                            <span>{task.isComplete ? "✅" : "No Complete"}</span>
+                            <span onClick={() => handleIsComplete(task.id)}>{task.isComplete ? "✅" : "No Complete"}</span>
                         </li>
                     ))}
                     <p onClick={handleAddTask}>+ Añadir Tarea</p>
