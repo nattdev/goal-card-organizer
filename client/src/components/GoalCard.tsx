@@ -26,8 +26,43 @@ function GoalCard({ card }: Props) {
         setGoalCards(updatedGoalCards);
     }
 
-    function handleOnBlurTask(e: React.FocusEvent<HTMLInputElement>) {
+    function handleOnChangeContent(e: React.ChangeEvent<HTMLInputElement>, id: number) {
+        if (e.target.className == "card-content") {
+            const updatedGoalCards = goalCards.map((goalCard) => {
+                if (goalCard.id === id) {
+                    return {
+                        ...goalCard,
+                        content: e.target.value,
+                    };
+                }
+                return goalCard;
+            });
+            setGoalCards(updatedGoalCards);
+            console.log("CARD");
+        } else {
+            const updatedGoalCards = goalCards.map((goalCard) => {
+                if (goalCard.id === card.id) {
+                    const updatedTaskList = goalCard.taskList.map((task) => {
+                        if (task.id === id) {
+                            return {
+                                ...task,
+                                content: e.target.value
+                            };
+                        }
+                        return task;
+                    });
+                    return {
+                        ...goalCard,
+                        taskList: updatedTaskList
+                    };
+                }
+                return goalCard;
+            });
+            setGoalCards(updatedGoalCards);
+            console.log("TASK");
+        }
         console.log(e.target.value);
+        console.log(e);
     }
 
     function handleIsComplete(taskId: number) {
@@ -84,14 +119,14 @@ function GoalCard({ card }: Props) {
         <div>
             <div onClick={() => handleGoalIsComplete(card.id)}>{card.isComplete ? "Complete" : "No Complete"}</div>
             <header>
-                <input type="text" defaultValue={card.content} onBlur={(e) => handleOnBlurTask(e)}></input>
+                <input className="card-content" type="text" defaultValue={card.content} onBlur={(e) => handleOnChangeContent(e, card.id)}></input>
             </header>
             <div>
                 <ul>
                     {card.taskList.map((task, index) => (
                         <li key={index}>
                             <span onClick={() => handleDeleteTask(task.id)}>🗑️</span>
-                            <input type="text" defaultValue={task.content} onBlur={(e) => handleOnBlurTask(e)}></input>
+                            <input className="task-content" type="text" onChange={(e) => handleOnChangeContent(e, task.id)} value={task.content}></input>
                             <span onClick={() => handleIsComplete(task.id)}>{task.isComplete ? "✅" : "No Complete"}</span>
                         </li>
                     ))}
