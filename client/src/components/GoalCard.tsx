@@ -56,7 +56,7 @@ function GoalCard({ card }: Props) {
         <div>
             <div>{card.isComplete ? "Complete" : "No Complete"}</div>
             <header>
-                <p>{card.content}</p>
+                <input type="text" defaultValue={card.content} onBlur={(e) => handleOnBlurTask(e)}></input>
             </header>
             <div>
                 <ul>
