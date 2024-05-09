@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { GoalCards, TaskList, useGoals } from "../context/GoalsContext";
 
 type Props = {
@@ -7,12 +8,13 @@ type Props = {
 function GoalCard({ card }: Props) {
 
     const { goalCards, setGoalCards } = useGoals();
+    const [idTask, setIdTask] = useState(1);
 
     function handleAddTask() {
         const updatedGoalCards = goalCards.map((goalCard) => {
             if (goalCard.id === card.id) {
                 const newTask: TaskList = {
-                    id: goalCard.taskList.length + 1,
+                    id: idTask,
                     content: "Nueva tarea",
                     isComplete: false
                 };
@@ -24,6 +26,7 @@ function GoalCard({ card }: Props) {
             return goalCard;
         });
         setGoalCards(updatedGoalCards);
+        setIdTask(idTask + 1);
     }
 
     function handleOnChangeContent(e: React.ChangeEvent<HTMLInputElement>, id: number) {
