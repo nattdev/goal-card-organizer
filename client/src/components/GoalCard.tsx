@@ -65,6 +65,21 @@ function GoalCard({ card }: Props) {
         setGoalCards(updatedGoalCards);
     }
 
+    function handleDeleteTask(taskId: number) {
+        console.log(taskId, "TASKID");
+        const updatedGoalCards = goalCards.map((goalCard) => {
+            if (goalCard.id === card.id) {
+                const updatedTaskList = goalCard.taskList.filter((task) => task.id !== taskId);
+                return {
+                    ...goalCard,
+                    taskList: updatedTaskList
+                };
+            }
+            return goalCard;
+        });
+        setGoalCards(updatedGoalCards);
+    }
+
     return (
         <div>
             <div onClick={() => handleGoalIsComplete(card.id)}>{card.isComplete ? "Complete" : "No Complete"}</div>
@@ -75,7 +90,7 @@ function GoalCard({ card }: Props) {
                 <ul>
                     {card.taskList.map((task, index) => (
                         <li key={index}>
-                            <span>🗑️</span>
+                            <span onClick={() => handleDeleteTask(task.id)}>🗑️</span>
                             <input type="text" defaultValue={task.content} onBlur={(e) => handleOnBlurTask(e)}></input>
                             <span onClick={() => handleIsComplete(task.id)}>{task.isComplete ? "✅" : "No Complete"}</span>
                         </li>
