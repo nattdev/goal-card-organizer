@@ -7,7 +7,7 @@ export type GoalCards = {
     taskList: TaskList[];
 }
 
-type TaskList = {
+export type TaskList = {
     id: number,
     content: string,
     isComplete: boolean,
