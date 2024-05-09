@@ -38,7 +38,6 @@ function GoalCard({ card }: Props) {
             </header>
             <div>
                 <ul>
-                    <p onClick={handleAddTask}>+ Añadir Tarea</p>
                     {card.taskList.map((task, index) => (
                         <li key={index}>
                             <input type="text" defaultValue={task.content} onBlur={(e) => handleOnBlur(e)}></input>
@@ -46,6 +45,7 @@ function GoalCard({ card }: Props) {
                             <span>{task.isComplete ? "✅" : "No Complete"}</span>
                         </li>
                     ))}
+                    <p onClick={handleAddTask}>+ Añadir Tarea</p>
                 </ul>
             </div>
         </div>
