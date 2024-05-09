@@ -52,9 +52,22 @@ function GoalCard({ card }: Props) {
         setGoalCards(updatedGoalCards);
     }
 
+    function handleGoalIsComplete(goalId: number) {
+        const updatedGoalCards = goalCards.map((goalCard) => {
+            if (goalCard.id === goalId) {
+                return {
+                    ...goalCard,
+                    isComplete: !goalCard.isComplete
+                };
+            }
+            return goalCard;
+        });
+        setGoalCards(updatedGoalCards);
+    }
+
     return (
         <div>
-            <div>{card.isComplete ? "Complete" : "No Complete"}</div>
+            <div onClick={() => handleGoalIsComplete(card.id)}>{card.isComplete ? "Complete" : "No Complete"}</div>
             <header>
                 <input type="text" defaultValue={card.content} onBlur={(e) => handleOnBlurTask(e)}></input>
             </header>
