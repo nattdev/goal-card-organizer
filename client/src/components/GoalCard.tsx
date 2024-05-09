@@ -26,7 +26,7 @@ function GoalCard({ card }: Props) {
         setGoalCards(updatedGoalCards);
     }
 
-    function handleOnBlur(e: React.FocusEvent<HTMLInputElement>) {
+    function handleOnBlurTask(e: React.FocusEvent<HTMLInputElement>) {
         console.log(e.target.value);
     }
 
@@ -62,7 +62,7 @@ function GoalCard({ card }: Props) {
                 <ul>
                     {card.taskList.map((task, index) => (
                         <li key={index}>
-                            <input type="text" defaultValue={task.content} onBlur={(e) => handleOnBlur(e)}></input>
+                            <input type="text" defaultValue={task.content} onBlur={(e) => handleOnBlurTask(e)}></input>
                             <span onClick={() => handleIsComplete(task.id)}>{task.isComplete ? "✅" : "No Complete"}</span>
                         </li>
                     ))}
