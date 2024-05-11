@@ -1,5 +1,11 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 
+export type GoalOrganizer = {
+    id: number,
+    name: string,
+    goalSet: GoalCards[],
+}
+
 export type GoalCards = {
     id: number,
     content: string,
@@ -14,13 +20,13 @@ export type TaskList = {
 }
 
 interface GoalsContextType {
-    goalCards: GoalCards[];
-    setGoalCards: (goalCards: GoalCards[]) => void;
+    goalOrganizer: GoalOrganizer[];
+    setGoalOrganizer: (goalOrganizer: GoalOrganizer[]) => void;
 }
 
 const defaultState: GoalsContextType = {
-    goalCards: [],
-    setGoalCards: (goalCards: GoalCards[]) => {}
+    goalOrganizer: [],
+    setGoalOrganizer: (goalOrganizer: GoalOrganizer[]) => {}
 }
 
 const GoalsContext = createContext(defaultState);
@@ -39,10 +45,10 @@ type GoalsProviderProps = {
 }
 
 function GoalsContextProvider({children} : GoalsProviderProps) {
-    const [goalCards, setGoalCards] = useState<GoalCards[]>([]);
+    const [goalOrganizer, setGoalOrganizer] = useState<GoalOrganizer[]>([]);
 
     return (
-        <GoalsContext.Provider value={{ goalCards, setGoalCards }}>
+        <GoalsContext.Provider value={{ goalOrganizer, setGoalOrganizer }}>
             {children}
         </GoalsContext.Provider>
     )
