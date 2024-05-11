@@ -1,4 +1,4 @@
-import GoalOrganizer from "./components/GoalOrganizer";
+import GoalFolder from "./components/GoalFolder";
 import GoalsContextProvider from "./context/GoalsContext";
 
 function App() {
@@ -6,7 +6,7 @@ function App() {
   return (
     <div>
       <GoalsContextProvider>
-        <GoalOrganizer />
+        <GoalFolder />
       </GoalsContextProvider>
     </div>
   )
