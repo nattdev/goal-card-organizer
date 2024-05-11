@@ -2,120 +2,162 @@ import { useState } from "react";
 import { GoalCards, TaskList, useGoals } from "../context/GoalsContext";
 
 type Props = {
-    card: GoalCards;
+    card: GoalCards,
+    goalSetId: number
 }
 
-function GoalCard({ card }: Props) {
+function GoalCard({ card, goalSetId }: Props) {
 
-    const { goalCards, setGoalCards } = useGoals();
+    const { goalOrganizer, setGoalOrganizer } = useGoals();
     const [idTask, setIdTask] = useState(1);
 
     function handleAddTask() {
-        const updatedGoalCards = goalCards.map((goalCard) => {
-            if (goalCard.id === card.id) {
-                const newTask: TaskList = {
-                    id: idTask,
-                    content: "Nueva tarea",
-                    isComplete: false
-                };
+        const updatedGoalOrganizer = goalOrganizer.map((goalFolder) => {
+            if (goalFolder.id === goalSetId) {
                 return {
-                    ...goalCard,
-                    taskList: [...goalCard.taskList, newTask]
+                    ...goalFolder,
+                    goalSet: goalFolder.goalSet.map((goalCard) => {
+                        if (goalCard.id === card.id) {
+                            const newTask: TaskList = {
+                                id: idTask,
+                                content: "Nueva tarea",
+                                isComplete: false
+                            };
+                            return {
+                                ...goalCard,
+                                taskList: [...goalCard.taskList, newTask]
+                            };
+                        }
+                        return goalCard;
+                    })
                 };
             }
-            return goalCard;
+            return goalFolder;
         });
-        setGoalCards(updatedGoalCards);
+        setGoalOrganizer(updatedGoalOrganizer);
         setIdTask(idTask + 1);
     }
 
     function handleOnChangeContent(e: React.ChangeEvent<HTMLInputElement>, id: number) {
         if (e.target.className == "card-content") {
-            const updatedGoalCards = goalCards.map((goalCard) => {
-                if (goalCard.id === id) {
+            const updatedGoalCards = goalOrganizer.map((goalFolder) => {
+                if (goalFolder.id === goalSetId) {
                     return {
-                        ...goalCard,
-                        content: e.target.value,
+                        ...goalFolder,
+                        goalSet: goalFolder.goalSet.map((goalCard) => {
+                            if (goalCard.id === id) {
+                                return {
+                                    ...goalCard,
+                                    content: e.target.value,
+                                };
+                            }
+                            return goalCard;
+                        })
                     };
                 }
-                return goalCard;
+                return goalFolder;
             });
-            setGoalCards(updatedGoalCards);
-            console.log("CARD");
+            setGoalOrganizer(updatedGoalCards);
         } else {
-            const updatedGoalCards = goalCards.map((goalCard) => {
-                if (goalCard.id === card.id) {
-                    const updatedTaskList = goalCard.taskList.map((task) => {
-                        if (task.id === id) {
-                            return {
-                                ...task,
-                                content: e.target.value
-                            };
-                        }
-                        return task;
-                    });
+            const updatedGoalTask = goalOrganizer.map((goalFolder) => {
+                if (goalFolder.id === goalSetId) {
                     return {
-                        ...goalCard,
-                        taskList: updatedTaskList
+                        ...goalFolder,
+                        goalSet: goalFolder.goalSet.map((goalCard) => {
+                            if (goalCard.id === card.id) {
+                                return {
+                                    ...goalCard,
+                                    taskList: goalCard.taskList.map((task) => {
+                                        if (task.id === id) {
+                                            return {
+                                                ...task,
+                                                content: e.target.value
+                                            };
+                                        }
+                                        return task;
+                                    })
+                                };
+                            }
+                            return goalCard;
+                        })
                     };
                 }
-                return goalCard;
+                return goalFolder;
             });
-            setGoalCards(updatedGoalCards);
-            console.log("TASK");
+            setGoalOrganizer(updatedGoalTask);
         }
-        console.log(e.target.value);
-        console.log(e);
     }
 
     function handleIsComplete(taskId: number) {
-        const updatedGoalCards = goalCards.map((goalCard) => {
-            if (goalCard.id === card.id) {
-                const updatedTaskList = goalCard.taskList.map((task) => {
-                    if (task.id === taskId) {
-                        return {
-                            ...task,
-                            isComplete: !task.isComplete
-                        };
-                    }
-                    return task;
-                });
+        const updatedGoalOrganizer = goalOrganizer.map((goalFolder) => {
+            if (goalFolder.id === goalSetId) {
                 return {
-                    ...goalCard,
-                    taskList: updatedTaskList
+                    ...goalFolder,
+                    goalSet: goalFolder.goalSet.map((goalCard) => {
+                        if (goalCard.id === card.id) {
+                            return {
+                                ...goalCard,
+                                taskList: goalCard.taskList.map((task) => {
+                                    if (task.id === taskId) {
+                                        return {
+                                            ...task,
+                                            isComplete: !task.isComplete
+                                        };
+                                    }
+                                    return task;
+                                })
+                            };
+                        }
+                        return goalCard;
+                    })
                 };
             }
-            return goalCard;
+            return goalFolder;
         });
-        setGoalCards(updatedGoalCards);
+        setGoalOrganizer(updatedGoalOrganizer);
     }
 
     function handleGoalIsComplete(goalId: number) {
-        const updatedGoalCards = goalCards.map((goalCard) => {
-            if (goalCard.id === goalId) {
+        const updatedGoalOrganizer = goalOrganizer.map((goalFolder) => {
+            if (goalFolder.id === goalSetId) {
                 return {
-                    ...goalCard,
-                    isComplete: !goalCard.isComplete
+                    ...goalFolder,
+                    goalSet: goalFolder.goalSet.map((goalCard) => {
+                        if (goalCard.id === goalId) {
+                            return {
+                                ...goalCard,
+                                isComplete: !goalCard.isComplete
+                            };
+                        }
+                        return goalCard;
+                    })
                 };
             }
-            return goalCard;
+            return goalFolder;
         });
-        setGoalCards(updatedGoalCards);
+        setGoalOrganizer(updatedGoalOrganizer);
     }
 
     function handleDeleteTask(taskId: number) {
-        console.log(taskId, "TASKID");
-        const updatedGoalCards = goalCards.map((goalCard) => {
-            if (goalCard.id === card.id) {
-                const updatedTaskList = goalCard.taskList.filter((task) => task.id !== taskId);
+        const updatedGoalOrganizer = goalOrganizer.map((goalFolder) => {
+            if (goalFolder.id === goalSetId) {
                 return {
-                    ...goalCard,
-                    taskList: updatedTaskList
+                    ...goalFolder,
+                    goalSet: goalFolder.goalSet.map((goalCard) => {
+                        if (goalCard.id === card.id) {
+                            const updatedTaskList = goalCard.taskList.filter((task) => task.id !== taskId);
+                            return {
+                                ...goalCard,
+                                taskList: updatedTaskList
+                            };
+                        }
+                        return goalCard;
+                    })
                 };
             }
-            return goalCard;
+            return goalFolder;
         });
-        setGoalCards(updatedGoalCards);
+        setGoalOrganizer(updatedGoalOrganizer);
     }
 
     return (
@@ -126,11 +168,12 @@ function GoalCard({ card }: Props) {
             </header>
             <div>
                 <ul>
-                    {card.taskList.map((task, index) => (
-                        <li key={index}>
+                    {card.taskList.map((task) => (
+                        <li key={task.id}>
                             <span onClick={() => handleDeleteTask(task.id)}>🗑️</span>
                             <input className="task-content" type="text" onChange={(e) => handleOnChangeContent(e, task.id)} value={task.content}></input>
                             <span onClick={() => handleIsComplete(task.id)}>{task.isComplete ? "✅" : "No Complete"}</span>
+                            <p>Mi tarea {task.id}</p>
                         </li>
                     ))}
                     <p onClick={handleAddTask}>+ Añadir Tarea</p>
