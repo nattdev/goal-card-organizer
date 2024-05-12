@@ -160,10 +160,25 @@ function GoalCard({ card, goalSetId }: Props) {
         setGoalOrganizer(updatedGoalOrganizer);
     }
 
+    function handleDeleteGoalCard(cardId: number) {
+        const updatedGoalOrganizer = goalOrganizer.map((goalFolder) => {
+            if (goalFolder.id === goalSetId) {
+                const updatedGoalCard = goalFolder.goalSet.filter((goalSet) => goalSet.id !== cardId);
+                return {
+                    ...goalFolder,
+                    goalSet: updatedGoalCard
+                };
+            }
+            return goalFolder;
+        });
+        setGoalOrganizer(updatedGoalOrganizer);
+    }
+
     return (
         <div>
             <div onClick={() => handleGoalIsComplete(card.id)}>{card.isComplete ? "Complete" : "No Complete"}</div>
             <header>
+                <span onClick={() => handleDeleteGoalCard(card.id)}>🗑️</span>
                 <input className="card-content" type="text" defaultValue={card.content} onBlur={(e) => handleOnChangeContent(e, card.id)}></input>
             </header>
             <div>
