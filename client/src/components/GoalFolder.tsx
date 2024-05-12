@@ -18,6 +18,11 @@ function GoalFolder() {
         setIdGoalFolder(idGoalFolder + 1);
     }
 
+    function handleDeleteGoalFolder(folderId: number) {
+        const updatedGoalOrganizer = goalOrganizer.filter((goalFolder) => goalFolder.id !== folderId);
+        setGoalOrganizer(updatedGoalOrganizer);
+    }
+
     return (
         <div>
             <div onClick={handleAddGoalSet}>
@@ -25,7 +30,10 @@ function GoalFolder() {
             </div>
             {goalOrganizer.map(folder => (
                 <div key={folder.id}>
-                    <p>Nombre de Folder</p>
+                    <div>
+                        <span onClick={() => handleDeleteGoalFolder(folder.id)}>🗑️</span>
+                        <p>Nombre de Folder</p>
+                    </div>
                     <GoalSet goalset={folder} />
                 </div>
             ))}
