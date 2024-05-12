@@ -7,7 +7,7 @@ function GoalFolder() {
     const { goalOrganizer, setGoalOrganizer } = useGoals();
     const [idGoalFolder, setIdGoalFolder] = useState(1);
 
-    function handleAddGoalSet() {
+    function handleAddGoalFolder() {
         const newGoalFolder: GoalOrganizer = {
             id: idGoalFolder,
             name: "First Set 1",
@@ -25,7 +25,7 @@ function GoalFolder() {
 
     return (
         <div>
-            <div onClick={handleAddGoalSet}>
+            <div onClick={handleAddGoalFolder}>
                 + Añadir Folder
             </div>
             {goalOrganizer.map(folder => (
