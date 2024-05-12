@@ -23,6 +23,19 @@ function GoalFolder() {
         setGoalOrganizer(updatedGoalOrganizer);
     }
 
+    function handleOnChangeName(e: React.ChangeEvent<HTMLInputElement>, id: number) {
+        const updatedGoalFolder = goalOrganizer.map((goalFolder) => {
+            if (goalFolder.id === id) {
+                return {
+                    ...goalFolder,
+                    name: e.target.value,
+                };
+            }
+            return goalFolder;
+        });
+        setGoalOrganizer(updatedGoalFolder);
+    }
+
     return (
         <div>
             <div onClick={handleAddGoalFolder}>
@@ -32,7 +45,7 @@ function GoalFolder() {
                 <div key={folder.id}>
                     <header>
                         <span onClick={() => handleDeleteGoalFolder(folder.id)}>🗑️</span>
-                        <p>Nombre de Folder</p>
+                        <input type="text" defaultValue={folder.name} onBlur={(e) => handleOnChangeName(e, folder.id)}></input>
                     </header>
                     <GoalSet goalset={folder} />
                 </div>
