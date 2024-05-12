@@ -30,10 +30,10 @@ function GoalFolder() {
             </div>
             {goalOrganizer.map(folder => (
                 <div key={folder.id}>
-                    <div>
+                    <header>
                         <span onClick={() => handleDeleteGoalFolder(folder.id)}>🗑️</span>
                         <p>Nombre de Folder</p>
-                    </div>
+                    </header>
                     <GoalSet goalset={folder} />
                 </div>
             ))}
