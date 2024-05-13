@@ -34,18 +34,18 @@ function GoalSet({ goalset }: Props) {
   const goalSetId = goalset.id;
 
   return (
-    <>
-      <div onClick={handleAddGoalCard}>
-        + Añadir Goal Card
-      </div>
-      <ul>
+    <div className="flex flex-col items-center">
+      <ul className="flex flex-wrap justify-center">
         {goalset.goalSet.map((goalCard) => (
-          <div key={goalCard.id}>
+          <div className="flex" key={goalCard.id}>
             <GoalCard card={goalCard} goalSetId={goalSetId} />
           </div>
         ))}
       </ul>
-    </>
+      <div className="cursor-pointer py-6 font-semibold" onClick={handleAddGoalCard}>
+        + Añadir Goal Card
+      </div>
+    </div>
   )
 }
 
