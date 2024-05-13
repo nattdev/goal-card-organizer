@@ -42,7 +42,7 @@ function GoalCard({ card, goalSetId }: Props) {
     }
 
     function handleOnChangeContent(e: React.ChangeEvent<HTMLInputElement>, id: number) {
-        if (e.target.className == "card-content") {
+        if (e.target.className.includes("card-content")) {
             const updatedGoalCards = goalOrganizer.map((goalFolder) => {
                 if (goalFolder.id === goalSetId) {
                     return {
@@ -185,7 +185,7 @@ function GoalCard({ card, goalSetId }: Props) {
                 <div className="pr-4" onClick={() => handleGoalIsComplete(card.id)}><img className={`min-w-8 cursor-pointer ${card.isComplete ? "" : "grayscale"}`} src={GoalCompleteIcon}></img></div>
             </div>
             <header className="mb-3">
-                <input className=" w-full card-content text-2xl font-semibold text-center bg-transparent" type="text" placeholder="Ingresar Título" defaultValue={card.content} onBlur={(e) => handleOnChangeContent(e, card.id)}></input>
+                <input className="w-full card-content text-2xl font-semibold text-center bg-transparent" type="text" placeholder="Ingresar Título" defaultValue={card.content} onChange={(e) => handleOnChangeContent(e, card.id)}></input>
             </header>
             <div>
                 <ul>
