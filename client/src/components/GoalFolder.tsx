@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { GoalOrganizer, useGoals } from "../context/GoalsContext";
 import GoalSet from "./GoalSet";
+import MinusCloseIcon from "../assets/icons/MinusCloseIcon.svg";
 
 function GoalFolder() {
 
@@ -37,15 +38,17 @@ function GoalFolder() {
     }
 
     return (
-        <div>
-            <div onClick={handleAddGoalFolder}>
+        <div className="flex flex-col-reverse">
+            <div className="order-1" onClick={handleAddGoalFolder}>
                 + Añadir Folder
             </div>
             {goalOrganizer.map(folder => (
-                <div key={folder.id}>
-                    <header>
-                        <span onClick={() => handleDeleteGoalFolder(folder.id)}>🗑️</span>
-                        <input type="text" defaultValue={folder.name} onBlur={(e) => handleOnChangeName(e, folder.id)}></input>
+                <div className={`flex flex-col relative bg-yellow-300 border-2 border-white pt-9`} key={folder.id}>
+                    <header className="flex items-center order-2 px-6 opacity-10">
+                        <span className="px-3" onClick={() => handleDeleteGoalFolder(folder.id)}>
+                            <img className="min-w-6 w-6" src={MinusCloseIcon}></img>
+                        </span>
+                        <input className="bg-transparent text-7xl bottom-0" type="text" defaultValue={folder.name} onBlur={(e) => handleOnChangeName(e, folder.id)}></input>
                     </header>
                     <GoalSet goalset={folder} />
                 </div>
