@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { GoalCards, TaskList, useGoals } from "../context/GoalsContext";
+import GoalCompleteIcon from "../assets/icons/GoalCompleteIcon.svg";
+import TaskCompleteIcon from "../assets/icons/TaskCompleteIcon.svg";
+import MinusCloseIcon from "../assets/icons/MinusCloseIcon.svg";
 
 type Props = {
     card: GoalCards,
@@ -175,20 +178,25 @@ function GoalCard({ card, goalSetId }: Props) {
     }
 
     return (
-        <div>
-            <div onClick={() => handleGoalIsComplete(card.id)}>{card.isComplete ? "Complete" : "No Complete"}</div>
-            <header>
-                <span onClick={() => handleDeleteGoalCard(card.id)}>🗑️</span>
-                <input className="card-content" type="text" defaultValue={card.content} onBlur={(e) => handleOnChangeContent(e, card.id)}></input>
+        <div className={`flex flex-col border-b-4 min-w-3/12 max-w-fit m-3 px-3 pb-3 border-gray-400
+        pt-2 ${card.isComplete ? "bg-green-200" : "bg-white"}`}>
+            <div className="flex justify-between items-center">
+                <span className="text-sm opacity-50" onClick={() => handleDeleteGoalCard(card.id)}><img className="cursor-pointer" src={MinusCloseIcon}></img></span>
+                <div className="pr-4" onClick={() => handleGoalIsComplete(card.id)}><img className={`min-w-8 cursor-pointer ${card.isComplete ? "" : "grayscale"}`} src={GoalCompleteIcon}></img></div>
+            </div>
+            <header className="mb-3">
+                <input className=" w-full card-content text-2xl font-semibold text-center bg-transparent" type="text" placeholder="Ingresar Título" defaultValue={card.content} onBlur={(e) => handleOnChangeContent(e, card.id)}></input>
             </header>
             <div>
                 <ul>
                     {card.taskList.map((task) => (
-                        <li key={task.id}>
-                            <span onClick={() => handleDeleteTask(task.id)}>🗑️</span>
-                            <input className="task-content" type="text" onChange={(e) => handleOnChangeContent(e, task.id)} value={task.content}></input>
-                            <span onClick={() => handleIsComplete(task.id)}>{task.isComplete ? "✅" : "No Complete"}</span>
-                            <p>Mi tarea {task.id}</p>
+                        <li key={task.id} className="flex justify-between py-1 items-center">
+                            <span className="px-1">●</span>
+                            <input className={`bg-transparent task-content font-normal flex-grow ${task.isComplete ? "line-through" : ""}`} type="text" onChange={(e) => handleOnChangeContent(e, task.id)} value={task.content}></input>
+                            <span className="ml-2 min-w-6" onClick={() => handleIsComplete(task.id)}>
+                                <img className={`w-full cursor-pointer ${task.isComplete ? "" : "grayscale"}`} src={TaskCompleteIcon}></img>
+                            </span>
+                            <span className="text-xs opacity-85 pl-1 cursor-pointer" onClick={() => handleDeleteTask(task.id)}>🗑️</span>
                         </li>
                     ))}
                     <p onClick={handleAddTask}>+ Añadir Tarea</p>
