@@ -26,7 +26,7 @@ interface GoalsContextType {
 
 const defaultState: GoalsContextType = {
     goalOrganizer: [],
-    setGoalOrganizer: (goalOrganizer: GoalOrganizer[]) => {}
+    setGoalOrganizer: (_goalOrganizer: GoalOrganizer[]) => {}
 }
 
 const GoalsContext = createContext(defaultState);
