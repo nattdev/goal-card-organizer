@@ -11,7 +11,7 @@ function GoalFolder() {
     function handleAddGoalFolder() {
         const newGoalFolder: GoalOrganizer = {
             id: idGoalFolder,
-            name: "First Set 1",
+            name: "",
             goalSet: []
         };
 
@@ -45,7 +45,7 @@ function GoalFolder() {
             {goalOrganizer.map(folder => (
                 <div className={`flex flex-col relative bg-yellow-300 border-2 border-white pt-9`} key={folder.id}>
                     <header className="flex items-center order-2 px-2 opacity-10">
-                        <input className="bg-transparent text-7xl left-0 bottom-0 w-full" type="text" defaultValue={folder.name} onBlur={(e) => handleOnChangeName(e, folder.id)}></input>
+                        <input placeholder="Folder" className="bg-transparent text-7xl left-0 bottom-0 w-full" type="text" defaultValue={folder.name} onBlur={(e) => handleOnChangeName(e, folder.id)}></input>
                         <span className="pl-3" onClick={() => handleDeleteGoalFolder(folder.id)}>
                             <img className="min-w-6 w-6" src={BoldCloseIcon}></img>
                         </span>

@@ -16,7 +16,7 @@ function GoalSet({ goalset }: Props) {
       if (goalFolder.id === goalset.id) {
         const newGoal: GoalCards = {
           id: idGoalCard,
-          content: "First Goal Card",
+          content: "",
           isComplete: false,
           taskList: []
         };

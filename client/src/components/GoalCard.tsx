@@ -23,7 +23,7 @@ function GoalCard({ card, goalSetId }: Props) {
                         if (goalCard.id === card.id) {
                             const newTask: TaskList = {
                                 id: idTask,
-                                content: "Nueva tarea",
+                                content: "",
                                 isComplete: false
                             };
                             return {
@@ -193,7 +193,7 @@ function GoalCard({ card, goalSetId }: Props) {
                             <span className="mr-2 sm:min-w-6 min-w-5" onClick={() => handleIsComplete(task.id)}>
                                 <img className={`w-full cursor-pointer ${task.isComplete ? "" : "grayscale"}`} src={TaskCompleteIcon}></img>
                             </span>
-                            <input className={`bg-transparent task-content font-normal flex-grow w-full ${task.isComplete ? "line-through" : ""}`} type="text" onChange={(e) => handleOnChangeContent(e, task.id)} value={task.content}></input>
+                            <input className={`bg-transparent task-content font-normal flex-grow w-full ${task.isComplete ? "line-through" : ""}`} type="text" onChange={(e) => handleOnChangeContent(e, task.id)} value={task.content} placeholder="Nueva Tarea"></input>
                             <span className="text-xs opacity-85 pl-1 cursor-pointer" onClick={() => handleDeleteTask(task.id)}>🗑️</span>
                         </li>
                     ))}
