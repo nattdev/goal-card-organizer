@@ -2,7 +2,7 @@ import { useState } from "react";
 import { GoalCards, TaskList, useGoals } from "../context/GoalsContext";
 import GoalCompleteIcon from "../assets/icons/GoalCompleteIcon.svg";
 import TaskCompleteIcon from "../assets/icons/TaskCompleteIcon.svg";
-import MinusCloseIcon from "../assets/icons/MinusCloseIcon.svg";
+import BoldCloseIcon from "../assets/icons/BoldCloseIcon.svg";
 
 type Props = {
     card: GoalCards,
@@ -178,28 +178,27 @@ function GoalCard({ card, goalSetId }: Props) {
     }
 
     return (
-        <div className={`flex flex-col border-b-4 min-w-3/12 max-w-fit m-3 px-3 pb-3 border-gray-400 pt-2 ${card.isComplete ? "bg-green-200" : "bg-white"}`}>
-            <div className="flex justify-between items-center">
-                <span className="text-sm opacity-50" onClick={() => handleDeleteGoalCard(card.id)}><img className="cursor-pointer" src={MinusCloseIcon}></img></span>
-                <div className="pr-4" onClick={() => handleGoalIsComplete(card.id)}><img className={`min-w-8 cursor-pointer ${card.isComplete ? "" : "grayscale"}`} src={GoalCompleteIcon}></img></div>
+        <div className={`flex flex-col border-b-4 min-w-3/12 max-w-fit sm:m-3 sm:px-3 m-1 px-1 pb-3 border-gray-400 pt-2 ${card.isComplete ? "bg-green-100" : "bg-white"}`}>
+            <div className="flex justify-between items-center pb-1">
+                <div className="pl-0" onClick={() => handleGoalIsComplete(card.id)}><img className={`min-w-8 cursor-pointer ${card.isComplete ? "" : "grayscale"}`} src={GoalCompleteIcon}></img></div>
+                <span className="text-sm opacity-50" onClick={() => handleDeleteGoalCard(card.id)}><img className="cursor-pointer pr-1" src={BoldCloseIcon}></img></span>
             </div>
-            <header className="mb-3">
-                <input className="w-full card-content text-2xl font-semibold text-center bg-transparent" type="text" placeholder="Ingresar Título" defaultValue={card.content} onChange={(e) => handleOnChangeContent(e, card.id)}></input>
+            <header className="mb-3 border-b-2 pb-2 border-gray-400">
+                <input className={`w-full card-content font-semibold text-center bg-transparent sm:text-2xl text-base ${card.isComplete ? "line-through" : ""}`} type="text" placeholder="Ingresar Título" defaultValue={card.content} onChange={(e) => handleOnChangeContent(e, card.id)}></input>
             </header>
             <div>
-                <ul>
+                <ul className="pb-4">
                     {card.taskList.map((task) => (
                         <li key={task.id} className="flex justify-between py-1 items-center">
-                            <span className="px-1">●</span>
-                            <input className={`bg-transparent task-content font-normal flex-grow w-full ${task.isComplete ? "line-through" : ""}`} type="text" onChange={(e) => handleOnChangeContent(e, task.id)} value={task.content}></input>
-                            <span className="ml-2 min-w-6" onClick={() => handleIsComplete(task.id)}>
+                            <span className="mr-2 sm:min-w-6 min-w-5" onClick={() => handleIsComplete(task.id)}>
                                 <img className={`w-full cursor-pointer ${task.isComplete ? "" : "grayscale"}`} src={TaskCompleteIcon}></img>
                             </span>
+                            <input className={`bg-transparent task-content font-normal flex-grow w-full ${task.isComplete ? "line-through" : ""}`} type="text" onChange={(e) => handleOnChangeContent(e, task.id)} value={task.content}></input>
                             <span className="text-xs opacity-85 pl-1 cursor-pointer" onClick={() => handleDeleteTask(task.id)}>🗑️</span>
                         </li>
                     ))}
-                    <p onClick={handleAddTask}>+ Añadir Tarea</p>
                 </ul>
+                <p className="w-fit" onClick={handleAddTask}>+ Añadir Tarea</p>
             </div>
         </div>
     );
