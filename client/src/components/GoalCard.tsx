@@ -178,8 +178,7 @@ function GoalCard({ card, goalSetId }: Props) {
     }
 
     return (
-        <div className={`flex flex-col border-b-4 min-w-3/12 max-w-fit m-3 px-3 pb-3 border-gray-400
-        pt-2 ${card.isComplete ? "bg-green-200" : "bg-white"}`}>
+        <div className={`flex flex-col border-b-4 min-w-3/12 max-w-fit m-3 px-3 pb-3 border-gray-400 pt-2 ${card.isComplete ? "bg-green-200" : "bg-white"}`}>
             <div className="flex justify-between items-center">
                 <span className="text-sm opacity-50" onClick={() => handleDeleteGoalCard(card.id)}><img className="cursor-pointer" src={MinusCloseIcon}></img></span>
                 <div className="pr-4" onClick={() => handleGoalIsComplete(card.id)}><img className={`min-w-8 cursor-pointer ${card.isComplete ? "" : "grayscale"}`} src={GoalCompleteIcon}></img></div>
@@ -192,7 +191,7 @@ function GoalCard({ card, goalSetId }: Props) {
                     {card.taskList.map((task) => (
                         <li key={task.id} className="flex justify-between py-1 items-center">
                             <span className="px-1">●</span>
-                            <input className={`bg-transparent task-content font-normal flex-grow ${task.isComplete ? "line-through" : ""}`} type="text" onChange={(e) => handleOnChangeContent(e, task.id)} value={task.content}></input>
+                            <input className={`bg-transparent task-content font-normal flex-grow w-full ${task.isComplete ? "line-through" : ""}`} type="text" onChange={(e) => handleOnChangeContent(e, task.id)} value={task.content}></input>
                             <span className="ml-2 min-w-6" onClick={() => handleIsComplete(task.id)}>
                                 <img className={`w-full cursor-pointer ${task.isComplete ? "" : "grayscale"}`} src={TaskCompleteIcon}></img>
                             </span>

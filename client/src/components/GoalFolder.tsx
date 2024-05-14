@@ -48,7 +48,7 @@ function GoalFolder() {
                         <span className="px-3" onClick={() => handleDeleteGoalFolder(folder.id)}>
                             <img className="min-w-6 w-6" src={MinusCloseIcon}></img>
                         </span>
-                        <input className="bg-transparent text-7xl bottom-0" type="text" defaultValue={folder.name} onBlur={(e) => handleOnChangeName(e, folder.id)}></input>
+                        <input className="bg-transparent text-7xl bottom-0 w-full" type="text" defaultValue={folder.name} onBlur={(e) => handleOnChangeName(e, folder.id)}></input>
                     </header>
                     <GoalSet goalset={folder} />
                 </div>
