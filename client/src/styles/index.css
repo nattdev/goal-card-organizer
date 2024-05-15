@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .transform-custom {
-    transform: rotateY(55deg) skewy(4deg);
+    transform: rotateY(47deg) skewy(4deg);
 }
 
 .text-vertical-custom {
@@ -13,7 +13,7 @@
 
 .perspective-custom {
     perspective-origin: top;
-    perspective: 500px;
+    perspective: 587px;
 }
 
 .scrollbar-custom::-webkit-scrollbar {
