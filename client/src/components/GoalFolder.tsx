@@ -39,7 +39,7 @@ function GoalFolder() {
 
     return (
         <div className="flex flex-col-reverse">
-            <div className="order-1" onClick={handleAddGoalFolder}>
+            <div className="order-1 p-6 z-30" onClick={handleAddGoalFolder}>
                 + Añadir Folder
             </div>
             {goalOrganizer.map(folder => (
