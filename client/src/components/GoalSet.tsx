@@ -35,7 +35,7 @@ function GoalSet({ goalset }: Props) {
 
   return (
     <div className="flex flex-col items-center">
-      <ul className="grid sm:grid-cols-3 grid-cols-2">
+      <ul className="grid lg:grid-cols-3 grid-cols-2">
         {goalset.goalSet.map((goalCard) => (
           <div className="flex min-w-[30%] justify-center sm:w-fit sm:text-base text-xs" key={goalCard.id}>
             <GoalCard card={goalCard} goalSetId={goalSetId} />
