@@ -3,10 +3,31 @@
 @tailwind utilities;
 
 .transform-custom {
-    transform: rotate3d(0, 1, 0, -40deg) skewy(-13deg);
+    transform: rotateY(55deg) skewy(4deg);
 }
 
 .text-vertical-custom {
-    writing-mode: vertical-rl;
+    writing-mode: vertical-lr;
     text-orientation: upright
+}
+
+.perspective-custom {
+    perspective-origin: top;
+    perspective: 500px;
+}
+
+.scrollbar-custom::-webkit-scrollbar {
+    width: 20px;
+    height: 20px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: #f7f4ed;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+    background: #ffc36e;
+    border-radius: 100vh;
+    border: 4px solid #f6f7ed;
 }
