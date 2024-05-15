@@ -1,3 +1,4 @@
+import FolderViewer from "./components/FolderViewer";
 import GoalFolder from "./components/GoalFolder";
 import GoalsContextProvider from "./context/GoalsContext";
 
@@ -9,6 +10,7 @@ function App() {
         <h1 className="text-2xl font-semibold">Organizador de Objetivos</h1>
       </header>
       <GoalsContextProvider>
+        <FolderViewer />
         <GoalFolder />
       </GoalsContextProvider>
     </div>
