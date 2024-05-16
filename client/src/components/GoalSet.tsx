@@ -36,8 +36,8 @@ function GoalSet({ goalset }: Props) {
   return (
     <div className="flex flex-col items-center">
       <ul className="grid lg:grid-cols-3 grid-cols-2 w-full text-center sm:gap-6 gap-3 sm:px-6 px-2 justify-items-center">
-        {goalset.goalSet.map((goalCard) => (
-          <div className="flex min-w-[30%] w-full justify-center max-w-96 sm:text-base text-xs" key={goalCard.id}>
+        {goalset.goalSet.map((goalCard, index) => (
+          <div className="flex min-w-[30%] w-full justify-center max-w-96 sm:text-base text-xs" key={`${goalCard.id}-${index}`}>
             <GoalCard card={goalCard} goalSetId={goalSetId} />
           </div>
         ))}

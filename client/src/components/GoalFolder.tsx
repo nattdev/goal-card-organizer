@@ -30,7 +30,7 @@ function GoalFolder() {
                 <p className="w-fit border-2 p-3 rounded-2xl border-dashed border-slate-300 font-semibold">+ Añadir Folder</p>
             </div>
             {goalOrganizer.map((folder, index) => (
-                <div className={`flex flex-col relative border-white pt-9 ${index % 2 === 1 ? 'bg-[#e7df7b]' : 'bg-yellow-300'}`} key={folder.id}>
+                <div className={`flex flex-col relative border-white pt-9 ${index % 2 === 1 ? 'bg-[#e7df7b]' : 'bg-yellow-300'}`} key={`${folder.id}-${index}`}>
                     <header className="flex items-center order-2 px-2 opacity-10">
                         <input placeholder="Folder" className="bg-transparent text-7xl left-0 bottom-0 w-full uppercase placeholder-gray-950 placeholder-opacity-50" type="text" defaultValue={folder.name} onBlur={(e) => handleOnChangeName(e, folder.id)}></input>
                         <span className="pl-3" onClick={() => handleDeleteGoalFolder(folder.id)}>
