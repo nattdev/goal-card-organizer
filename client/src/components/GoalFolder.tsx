@@ -5,7 +5,7 @@ import BoldCloseIcon from "../assets/icons/BoldCloseIcon.svg";
 
 function GoalFolder() {
 
-    const { goalOrganizer, setGoalOrganizer } = useGoals();
+    const { goalOrganizer, setGoalOrganizer, handleOnChangeName } = useGoals();
     const [idGoalFolder, setIdGoalFolder] = useState(1);
 
     function handleAddGoalFolder() {
@@ -22,19 +22,6 @@ function GoalFolder() {
     function handleDeleteGoalFolder(folderId: number) {
         const updatedGoalOrganizer = goalOrganizer.filter((goalFolder) => goalFolder.id !== folderId);
         setGoalOrganizer(updatedGoalOrganizer);
-    }
-
-    function handleOnChangeName(e: React.ChangeEvent<HTMLInputElement>, id: number) {
-        const updatedGoalFolder = goalOrganizer.map((goalFolder) => {
-            if (goalFolder.id === id) {
-                return {
-                    ...goalFolder,
-                    name: e.target.value,
-                };
-            }
-            return goalFolder;
-        });
-        setGoalOrganizer(updatedGoalFolder);
     }
 
     return (

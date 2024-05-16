@@ -22,11 +22,13 @@ export type TaskList = {
 interface GoalsContextType {
     goalOrganizer: GoalOrganizer[];
     setGoalOrganizer: (goalOrganizer: GoalOrganizer[]) => void;
+    handleOnChangeName: (e: React.ChangeEvent<HTMLInputElement>, id: number) => void;
 }
 
 const defaultState: GoalsContextType = {
     goalOrganizer: [],
-    setGoalOrganizer: (_goalOrganizer: GoalOrganizer[]) => {}
+    setGoalOrganizer: (_goalOrganizer: GoalOrganizer[]) => {},
+    handleOnChangeName: (_e: React.ChangeEvent<HTMLInputElement>, _id: number) => {}
 }
 
 const GoalsContext = createContext(defaultState);
@@ -47,8 +49,21 @@ type GoalsProviderProps = {
 function GoalsContextProvider({children} : GoalsProviderProps) {
     const [goalOrganizer, setGoalOrganizer] = useState<GoalOrganizer[]>([]);
 
+    function handleOnChangeName(e: React.ChangeEvent<HTMLInputElement>, id: number) {
+        const updatedGoalFolder = goalOrganizer.map((goalFolder) => {
+            if (goalFolder.id === id) {
+                return {
+                    ...goalFolder,
+                    name: e.target.value,
+                };
+            }
+            return goalFolder;
+        });
+        setGoalOrganizer(updatedGoalFolder);
+    }
+
     return (
-        <GoalsContext.Provider value={{ goalOrganizer, setGoalOrganizer }}>
+        <GoalsContext.Provider value={{ goalOrganizer, setGoalOrganizer, handleOnChangeName }}>
             {children}
         </GoalsContext.Provider>
     )
