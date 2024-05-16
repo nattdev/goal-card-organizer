@@ -178,7 +178,7 @@ function GoalCard({ card, goalSetId }: Props) {
     }
 
     return (
-        <div className={`flex flex-col border-b-4 min-w-3/12 max-w-fit sm:m-3 sm:px-3 m-1 px-1 pb-3 border-gray-400 pt-2 ${card.isComplete ? "bg-green-100" : "bg-white"}`}>
+        <div className={`flex flex-col w-full border-b-4 sm:m-3 sm:px-3 px-1 pb-3 border-gray-400 pt-2 ${card.isComplete ? "bg-green-100" : "bg-white"}`}>
             <div className="flex justify-between items-center pb-1">
                 <div className="pl-0" onClick={() => handleGoalIsComplete(card.id)}><img className={`min-w-8 cursor-pointer ${card.isComplete ? "" : "grayscale"}`} src={GoalCompleteIcon}></img></div>
                 <span className="text-sm opacity-50" onClick={() => handleDeleteGoalCard(card.id)}><img className="cursor-pointer pr-1" src={BoldCloseIcon}></img></span>

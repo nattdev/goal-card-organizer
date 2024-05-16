@@ -35,16 +35,17 @@ function GoalSet({ goalset }: Props) {
 
   return (
     <div className="flex flex-col items-center">
-      <ul className="grid lg:grid-cols-3 grid-cols-2">
+      <ul className="grid lg:grid-cols-3 grid-cols-2 w-full text-center sm:gap-6 gap-3 sm:px-6 px-2 justify-items-center">
         {goalset.goalSet.map((goalCard) => (
-          <div className="flex min-w-[30%] justify-center sm:w-fit sm:text-base text-xs" key={goalCard.id}>
+          <div className="flex min-w-[30%] w-full justify-center max-w-96 sm:text-base text-xs" key={goalCard.id}>
             <GoalCard card={goalCard} goalSetId={goalSetId} />
           </div>
         ))}
+        <div className="cursor-pointer w-full max-w-96 flex" onClick={handleAddGoalCard}>
+          <p className="border-2 border-gray-400 border-dashed p-2 sm:m-3 m-0 font-semibold w-full">+ Añadir Goal Card</p>
+        </div>
       </ul>
-      <div className="cursor-pointer py-6 font-semibold" onClick={handleAddGoalCard}>
-        + Añadir Goal Card
-      </div>
+
     </div>
   )
 }
