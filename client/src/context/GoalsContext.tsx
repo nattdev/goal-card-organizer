@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, ReactNode, useEffect } from "react";
 
 export type GoalOrganizer = {
     id: number,
@@ -46,9 +46,17 @@ type GoalsProviderProps = {
     children: ReactNode,
 }
 
-function GoalsContextProvider({children} : GoalsProviderProps) {
-    const [goalOrganizer, setGoalOrganizer] = useState<GoalOrganizer[]>([]);
+function GoalsContextProvider({ children }: GoalsProviderProps) {
 
+    const [goalOrganizer, setGoalOrganizer] = useState<GoalOrganizer[]>(() => {
+        const storedItems = localStorage.getItem("goalOrganizerList");
+        return storedItems ? JSON.parse(storedItems) : [];
+    });
+
+    useEffect(() => {
+        localStorage.setItem("goalOrganizerList", JSON.stringify(goalOrganizer));
+    }, [goalOrganizer]);
+  
     function handleOnChangeName(e: React.ChangeEvent<HTMLInputElement>, id: number) {
         const updatedGoalFolder = goalOrganizer.map((goalFolder) => {
             if (goalFolder.id === id) {
