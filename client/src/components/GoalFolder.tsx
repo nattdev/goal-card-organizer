@@ -6,7 +6,16 @@ import BoldCloseIcon from "../assets/icons/BoldCloseIcon.svg";
 function GoalFolder() {
 
     const { goalOrganizer, setGoalOrganizer, handleOnChangeName } = useGoals();
-    const [idGoalFolder, setIdGoalFolder] = useState(1);
+    const [idGoalFolder, setIdGoalFolder] = useState(() => {
+        const storedItems = localStorage.getItem("goalOrganizerList");
+        if (storedItems) {
+            const parseStoredItems = JSON.parse(storedItems);
+            const maxId = parseStoredItems.reduce((max: number, folder: { id: number; }) => folder.id > max ? folder.id : max, 0);
+            return maxId + 1;
+        } else {
+            return 1;
+        }
+    });
 
     function handleAddGoalFolder() {
         const newGoalFolder: GoalOrganizer = {
