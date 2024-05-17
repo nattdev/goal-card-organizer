@@ -5,8 +5,8 @@ function FolderViewer() {
     const { goalOrganizer, handleOnChangeName } = useGoals();
 
     return (
-        <div className="min-h-96 w-full text-center">
-            <ul className="flex h-full pb-20 justify-start relative pr-64 overflow-x-scroll scrollbar-custom gap-x-4 overflow-y-hidden pt-3" key={"1"}>
+        <div className="h-full w-full text-center">
+            <ul className="flex min-h-96 pb-20 justify-start relative pr-64 overflow-x-scroll scrollbar-custom gap-x-4 overflow-y-hidden pt-3" key={"1"}>
                 {goalOrganizer.map((folder, index) => (
                     <li key={`${folder.id}-${index}`} className={`min-w-[300px] w-[300px] h-[270px] inline-flex relative -mr-[15.0em]`}>
                         <div className="top-0 perspective-custom input-perspective z-30">
