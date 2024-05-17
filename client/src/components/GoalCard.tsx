@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { GoalCards, TaskList, useGoals } from "../context/GoalsContext";
+import { useEffect, useState } from "react";
+import { GoalCards, TaskList, useGoals, GoalOrganizer } from "../context/GoalsContext";
 import GoalCompleteIcon from "../assets/icons/GoalCompleteIcon.svg";
 import TaskCompleteIcon from "../assets/icons/TaskCompleteIcon.svg";
 import BoldCloseIcon from "../assets/icons/BoldCloseIcon.svg";
@@ -13,6 +13,26 @@ function GoalCard({ card, goalSetId }: Props) {
 
     const { goalOrganizer, setGoalOrganizer } = useGoals();
     const [idTask, setIdTask] = useState(1);
+
+    useEffect(() => {
+        const storedItems = localStorage.getItem("goalOrganizerList");
+        if (storedItems) {
+            const parseStoredItems: GoalOrganizer[] = JSON.parse(storedItems);
+            const targetFolder = parseStoredItems.find(folder => folder.id === goalSetId);
+            if (targetFolder) {
+                const targetGoalCard = targetFolder.goalSet.find(goal => goal.id === card.id);
+                if (targetGoalCard) {
+                    let maxId = 0;
+                    targetGoalCard.taskList.forEach((task: TaskList) => {
+                        if (task.id > maxId) {
+                            maxId = task.id;
+                        }
+                    });
+                    setIdTask(maxId + 1);
+                }
+            }
+        }
+    }, []);
 
     function handleAddTask() {
         const updatedGoalOrganizer = goalOrganizer.map((goalFolder) => {
