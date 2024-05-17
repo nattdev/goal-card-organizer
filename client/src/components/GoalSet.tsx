@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import GoalCard from "./GoalCard";
 import { GoalCards, GoalOrganizer, useGoals } from "../context/GoalsContext";
 import ColumnsIcon from "../assets/icons/ColumnsIcon.svg"
@@ -12,6 +12,25 @@ function GoalSet({ goalset }: Props) {
   const { goalOrganizer, setGoalOrganizer } = useGoals();
   const [idGoalCard, setIdGoalCard] = useState(1);
   const [folderColumns, setFolderColumns] = useState(3);
+
+  const goalSetId = goalset.id;
+
+  useEffect(() => {
+    const storedItems = localStorage.getItem("goalOrganizerList");
+    if (storedItems) {
+      const parseStoredItems: GoalOrganizer[] = JSON.parse(storedItems);
+      const targetFolder = parseStoredItems.find(folder => folder.id === goalSetId);
+      if (targetFolder) {
+        let maxId = 0;
+        targetFolder.goalSet.forEach((goal: GoalCards) => {
+          if (goal.id > maxId) {
+            maxId = goal.id;
+          }
+        });
+        setIdGoalCard(maxId + 1);
+      }
+    }
+  }, []);
 
   function handleAddGoalCard() {
     const updatedGoalSet = goalOrganizer.map((goalFolder) => {
@@ -40,8 +59,6 @@ function GoalSet({ goalset }: Props) {
       setFolderColumns(3);
     }
   }
-
-  const goalSetId = goalset.id;
 
   return (
     <div className="flex flex-col items-center">
