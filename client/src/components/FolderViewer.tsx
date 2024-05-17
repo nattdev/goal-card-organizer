@@ -10,7 +10,7 @@ function FolderViewer() {
                 {goalOrganizer.map((folder, index) => (
                     <li key={`${folder.id}-${index}`} className={`min-w-[300px] w-[300px] h-[270px] inline-flex relative -mr-[15.0em]`}>
                         <div className="top-0 perspective-custom input-perspective z-30">
-                            <input placeholder="Folder" className="text-vertical-custom font-semibold text-slate-500 uppercase max-h-[9.50rem] mt-12 text-sm overflow-hidden transform-custom ml-7 bg-gray-200 bg-opacity-60 relative z-50" type="text" defaultValue={folder.name} onBlur={(e) => handleOnChangeName(e, folder.id)}></input>
+                            <input placeholder="Folder" className="text-vertical-custom font-semibold text-slate-500 uppercase max-h-[9.50rem] mt-12 text-sm overflow-hidden transform-custom ml-7 bg-gray-200 bg-opacity-60 relative z-50" type="text" value={folder.name} onChange={(e) => handleOnChangeName(e, folder.id)}></input>
                         </div>
                         <div className="h-full absolute z-10 perspective-custom">
                             <img className={`transform-custom h-full ${index % 2 === 1 ? 'hue-rotate-15' : ''}`} src={FolderView}></img>
