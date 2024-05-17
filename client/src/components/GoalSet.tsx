@@ -1,6 +1,7 @@
 import { useState } from "react";
 import GoalCard from "./GoalCard";
 import { GoalCards, GoalOrganizer, useGoals } from "../context/GoalsContext";
+import ColumnsIcon from "../assets/icons/ColumnsIcon.svg"
 
 type Props = {
   goalset: GoalOrganizer;
@@ -10,6 +11,7 @@ function GoalSet({ goalset }: Props) {
 
   const { goalOrganizer, setGoalOrganizer } = useGoals();
   const [idGoalCard, setIdGoalCard] = useState(1);
+  const [folderColumns, setFolderColumns] = useState("3");
 
   function handleAddGoalCard() {
     const updatedGoalSet = goalOrganizer.map((goalFolder) => {
@@ -31,11 +33,25 @@ function GoalSet({ goalset }: Props) {
     setIdGoalCard(idGoalCard + 1);
   }
 
+  function handleOnClickSetColumns() {
+    const folderColumnsNumber = parseFloat(folderColumns);
+    if (folderColumnsNumber <= 3 && folderColumnsNumber > 1) {
+      setFolderColumns((folderColumnsNumber - 1).toString());
+    } else {
+      setFolderColumns("3");
+    }
+  }
+
   const goalSetId = goalset.id;
 
   return (
     <div className="flex flex-col items-center">
-      <ul className="grid lg:grid-cols-3 grid-cols-2 w-full text-center sm:gap-6 gap-3 sm:px-6 px-2 justify-items-center">
+      <div className="pt-7 pb-3">
+        <button onClick={handleOnClickSetColumns}>
+          <img src={ColumnsIcon}></img>
+        </button>
+      </div>
+      <ul className={`grid grid-cols-${folderColumns} w-full text-center sm:gap-6 gap-3 sm:px-6 px-2 justify-items-center`}>
         {goalset.goalSet.map((goalCard, index) => (
           <div className="flex min-w-[30%] w-full justify-center max-w-96 sm:text-base text-xs" key={`${goalCard.id}-${index}`}>
             <GoalCard card={goalCard} goalSetId={goalSetId} />
@@ -45,7 +61,6 @@ function GoalSet({ goalset }: Props) {
           <p className="border-2 border-gray-400 border-dashed p-2 sm:m-3 m-0 font-semibold w-full">+ Añadir Goal Card</p>
         </div>
       </ul>
-
     </div>
   )
 }
