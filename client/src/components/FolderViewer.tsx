@@ -1,8 +1,9 @@
 import { useGoals } from "../context/GoalsContext";
 import FolderView from "../assets/icons/FolderView.svg";
+import BoldCloseIcon from "../assets/icons/BoldCloseIcon.svg";
 
 function FolderViewer() {
-    const { goalOrganizer, handleOnChangeName } = useGoals();
+    const { goalOrganizer, handleOnChangeName, handleDeleteGoalFolder } = useGoals();
 
     return (
         <div className="relative min-h-96 text-center overflow-x-scroll overflow-y-hidden scrollbar-custom pb-56">
@@ -14,6 +15,11 @@ function FolderViewer() {
                         </div>
                         <div className="w-full h-full transform-element-custom">
                             <img className={`absolute object-cover translate-y-[-44px] translate-x-[-30px] w-full h-full ${index % 2 === 1 ? 'hue-rotate-15' : ''}`} src={FolderView}></img>
+                            <div className="absolute top-[-26px] right-12 cursor-pointer bg-slate-300 p-[2px] opacity-25 z-[500000]">
+                                <span className="" onClick={() => handleDeleteGoalFolder(folder.id)}>
+                                    <img className="min-w-2 w-2" src={BoldCloseIcon}></img>
+                                </span>
+                            </div>
                         </div>
                     </li>
                 ))}
