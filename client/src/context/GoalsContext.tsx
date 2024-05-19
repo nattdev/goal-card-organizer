@@ -24,12 +24,14 @@ interface GoalsContextType {
     goalOrganizer: GoalOrganizer[];
     setGoalOrganizer: (goalOrganizer: GoalOrganizer[]) => void;
     handleOnChangeName: (e: React.ChangeEvent<HTMLInputElement>, id: number) => void;
+    handleDeleteGoalFolder: (folderId: number) => void;
 }
 
 const defaultState: GoalsContextType = {
     goalOrganizer: [],
     setGoalOrganizer: (_goalOrganizer: GoalOrganizer[]) => {},
-    handleOnChangeName: (_e: React.ChangeEvent<HTMLInputElement>, _id: number) => {}
+    handleOnChangeName: (_e: React.ChangeEvent<HTMLInputElement>, _id: number) => {},
+    handleDeleteGoalFolder: (_folderId: number) => {}
 }
 
 const GoalsContext = createContext(defaultState);
@@ -71,8 +73,13 @@ function GoalsContextProvider({ children }: GoalsProviderProps) {
         setGoalOrganizer(updatedGoalFolder);
     }
 
+    function handleDeleteGoalFolder(folderId: number) {
+        const updatedGoalOrganizer = goalOrganizer.filter((goalFolder) => goalFolder.id !== folderId);
+        setGoalOrganizer(updatedGoalOrganizer);
+    }
+
     return (
-        <GoalsContext.Provider value={{ goalOrganizer, setGoalOrganizer, handleOnChangeName }}>
+        <GoalsContext.Provider value={{ goalOrganizer, setGoalOrganizer, handleOnChangeName, handleDeleteGoalFolder}}>
             {children}
         </GoalsContext.Provider>
     )

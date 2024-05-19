@@ -5,7 +5,7 @@ import BoldCloseIcon from "../assets/icons/BoldCloseIcon.svg";
 
 function GoalFolder() {
 
-    const { goalOrganizer, setGoalOrganizer, handleOnChangeName } = useGoals();
+    const { goalOrganizer, setGoalOrganizer, handleOnChangeName, handleDeleteGoalFolder } = useGoals();
     const [idGoalFolder, setIdGoalFolder] = useState(() => {
         const storedItems = localStorage.getItem("goalOrganizerList");
         if (storedItems) {
@@ -27,11 +27,6 @@ function GoalFolder() {
 
         setGoalOrganizer([...goalOrganizer, newGoalFolder]);
         setIdGoalFolder(idGoalFolder + 1);
-    }
-
-    function handleDeleteGoalFolder(folderId: number) {
-        const updatedGoalOrganizer = goalOrganizer.filter((goalFolder) => goalFolder.id !== folderId);
-        setGoalOrganizer(updatedGoalOrganizer);
     }
 
     return (
