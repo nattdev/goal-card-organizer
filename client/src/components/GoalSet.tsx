@@ -11,7 +11,7 @@ function GoalSet({ goalset }: Props) {
 
   const { goalOrganizer, setGoalOrganizer } = useGoals();
   const [idGoalCard, setIdGoalCard] = useState(1);
-  const [folderColumns, setFolderColumns] = useState(3);
+  const [folderColumns, setFolderColumns] = useState(goalset.columns);
 
   const goalSetId = goalset.id;
 
@@ -52,11 +52,27 @@ function GoalSet({ goalset }: Props) {
     setIdGoalCard(idGoalCard + 1);
   }
 
+  function updateSetColumns(updateColumn: number) {
+    const updatedSetColumns = goalOrganizer.map((goalFolder) => {
+      if (goalFolder.id === goalset.id) {
+        return {
+          ...goalFolder,
+          columns: updateColumn,
+        };
+      }
+      return goalFolder;
+    });
+    setGoalOrganizer(updatedSetColumns);
+  }
+
   function handleOnClickSetColumns() {
     if (folderColumns <= 3 && folderColumns > 1) {
-      setFolderColumns((folderColumns - 1));
+      const updateColumn = folderColumns - 1;
+      setFolderColumns((updateColumn));
+      updateSetColumns(updateColumn);
     } else {
       setFolderColumns(3);
+      updateSetColumns(3);
     }
   }
 

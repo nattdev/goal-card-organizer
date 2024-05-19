@@ -3,6 +3,7 @@ import { createContext, useContext, useState, ReactNode, useEffect } from "react
 export type GoalOrganizer = {
     id: number,
     name: string,
+    columns: number,
     goalSet: GoalCards[],
 }
 
