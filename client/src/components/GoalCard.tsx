@@ -204,7 +204,7 @@ function GoalCard({ card, goalSetId }: Props) {
                 <span className="text-sm opacity-50" onClick={() => handleDeleteGoalCard(card.id)}><img className="cursor-pointer pr-1" src={BoldCloseIcon}></img></span>
             </div>
             <header className="mb-3 border-b-2 pb-2 border-gray-400">
-                <input className={`w-full card-content font-semibold text-center bg-transparent sm:text-2xl text-lg ${card.isComplete ? "line-through" : ""}`} type="text" placeholder="Ingresar Título" defaultValue={card.content} onChange={(e) => handleOnChangeContent(e, card.id)}></input>
+                <input className={`w-full card-content font-semibold text-center bg-transparent sm:text-2xl text-lg ${card.isComplete ? "line-through" : ""}`} type="text" placeholder="Ingresar Objetivo" defaultValue={card.content} onChange={(e) => handleOnChangeContent(e, card.id)}></input>
             </header>
             <div className="sm:text-base text-sm">
                 <ul className="pb-4">
