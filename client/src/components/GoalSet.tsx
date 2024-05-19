@@ -90,7 +90,7 @@ function GoalSet({ goalset }: Props) {
           </div>
         ))}
         <div className="cursor-pointer w-full max-w-96 flex" onClick={handleAddGoalCard}>
-          <p className="border-2 border-gray-400 border-dashed p-2 sm:m-3 m-0 font-semibold w-full">+ Añadir Goal Card</p>
+          <p className="border-2 border-gray-400 border-dashed p-2 sm:m-3 m-0 font-semibold w-full">+ Añadir Objective Card</p>
         </div>
       </ul>
     </div>
