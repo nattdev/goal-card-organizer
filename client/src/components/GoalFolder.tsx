@@ -21,7 +21,7 @@ function GoalFolder() {
         const newGoalFolder: GoalOrganizer = {
             id: idGoalFolder,
             name: "",
-            columns: 3,
+            columns: window.innerWidth > 640 ? 3 : 2,
             goalSet: []
         };
 
