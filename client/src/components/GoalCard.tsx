@@ -204,13 +204,13 @@ function GoalCard({ card, goalSetId }: Props) {
                 <span className="text-sm opacity-50" onClick={() => handleDeleteGoalCard(card.id)}><img className="cursor-pointer pr-1" src={BoldCloseIcon}></img></span>
             </div>
             <header className="mb-3 border-b-2 pb-2 border-gray-400">
-                <input className={`w-full card-content font-semibold text-center bg-transparent sm:text-2xl text-base ${card.isComplete ? "line-through" : ""}`} type="text" placeholder="Ingresar Título" defaultValue={card.content} onChange={(e) => handleOnChangeContent(e, card.id)}></input>
+                <input className={`w-full card-content font-semibold text-center bg-transparent sm:text-2xl text-lg ${card.isComplete ? "line-through" : ""}`} type="text" placeholder="Ingresar Título" defaultValue={card.content} onChange={(e) => handleOnChangeContent(e, card.id)}></input>
             </header>
-            <div>
+            <div className="sm:text-base text-sm">
                 <ul className="pb-4">
                     {card.taskList.map((task) => (
                         <li key={task.id} className="flex justify-between py-1 items-center">
-                            <span className="mr-2 sm:min-w-6 min-w-5" onClick={() => handleIsComplete(task.id)}>
+                            <span className="mr-2 sm:min-w-6 min-w-[22px]" onClick={() => handleIsComplete(task.id)}>
                                 <img className={`w-full cursor-pointer ${task.isComplete ? "" : "grayscale"}`} src={TaskCompleteIcon}></img>
                             </span>
                             <input className={`bg-transparent task-content font-normal flex-grow w-full ${task.isComplete ? "line-through" : ""}`} type="text" onChange={(e) => handleOnChangeContent(e, task.id)} value={task.content} placeholder="Nueva Tarea"></input>

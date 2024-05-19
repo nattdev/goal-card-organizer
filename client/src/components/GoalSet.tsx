@@ -85,7 +85,7 @@ function GoalSet({ goalset }: Props) {
       </div>
       <ul className={`grid ${folderColumns == 1 ? "grid-cols-1" : folderColumns == 2 ? "grid-cols-2" : "grid-cols-3"} w-full text-center sm:gap-6 gap-3 sm:px-6 px-2 justify-items-center`}>
         {goalset.goalSet.map((goalCard, index) => (
-          <div className="flex min-w-[30%] w-full justify-center max-w-96 sm:text-base text-xs" key={`${goalCard.id}-${index}`}>
+          <div className="flex min-w-[30%] w-full justify-center max-w-96" key={`${goalCard.id}-${index}`}>
             <GoalCard card={goalCard} goalSetId={goalSetId} />
           </div>
         ))}
