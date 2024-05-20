@@ -15,8 +15,8 @@ function FolderViewer() {
                         </div>
                         <div className="w-full h-full transform-element-custom">
                             <img className={`absolute object-cover sm:translate-y-[-37px] translate-y-[-34px] translate-x-[-30px] w-full sm:h-[239px] h-[204px] ${index % 2 === 1 ? 'hue-rotate-15' : ''}`} src={FolderView}></img>
-                            <div className="absolute top-[-26px] right-12 cursor-pointer bg-slate-300 p-[2px] opacity-25 z-[500000]">
-                                <span className="" onClick={() => handleDeleteGoalFolder(folder.id)}>
+                            <div className="absolute top-[-26px] right-12 cursor-pointer bg-slate-300 p-[2px] opacity-25 z-[500000]" onClick={() => handleDeleteGoalFolder(folder.id)}>
+                                <span>
                                     <img className="min-w-2 w-2" src={BoldCloseIcon}></img>
                                 </span>
                             </div>
