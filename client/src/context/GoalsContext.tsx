@@ -4,6 +4,7 @@ export type GoalOrganizer = {
     id: number,
     name: string,
     columns: number,
+    isMinimize: boolean,
     goalSet: GoalCards[],
 }
 

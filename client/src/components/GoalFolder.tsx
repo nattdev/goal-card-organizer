@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { GoalOrganizer, useGoals } from "../context/GoalsContext";
 import GoalSet from "./GoalSet";
-import BoldCloseIcon from "../assets/icons/BoldCloseIcon.svg";
 
 function GoalFolder() {
 
-    const { goalOrganizer, setGoalOrganizer, handleOnChangeName, handleDeleteGoalFolder } = useGoals();
+    const { goalOrganizer, setGoalOrganizer } = useGoals();
     const [idGoalFolder, setIdGoalFolder] = useState(() => {
         const storedItems = localStorage.getItem("goalOrganizerList");
         if (storedItems) {
@@ -22,6 +21,7 @@ function GoalFolder() {
             id: idGoalFolder,
             name: "",
             columns: window.innerWidth > 640 ? 3 : 2,
+            isMinimize: false,
             goalSet: []
         };
 
@@ -36,13 +36,8 @@ function GoalFolder() {
             </div>
             {goalOrganizer.map((folder, index) => (
                 <div className={`flex flex-col relative border-white pt-0 ${index % 2 === 1 ? 'bg-[#e7df7b]' : 'bg-yellow-300'}`} key={`${folder.id}-${index}`}>
-                    <header className="flex items-center order-2 px-2 opacity-10">
-                        <input placeholder="Folder" className="bg-transparent sm:text-7xl text-5xl left-0 bottom-0 w-full uppercase placeholder-gray-950 placeholder-opacity-50 py-6" type="text" value={folder.name} onChange={(e) => handleOnChangeName(e, folder.id)}></input>
-                        <span className="pl-3" onClick={() => handleDeleteGoalFolder(folder.id)}>
-                            <img className="min-w-6 w-6" src={BoldCloseIcon}></img>
-                        </span>
-                    </header>
-                    <GoalSet goalset={folder} />
+                    <GoalSet goalset={folder} folderId={folder.id} folderName={folder.name} />
+                    <div>{folder.isMinimize}</div>
                 </div>
             ))}
         </div>
