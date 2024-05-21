@@ -16,10 +16,10 @@ function FolderViewer() {
                             </div>
                             <div className="w-full h-full">
                                 <img className={`absolute object-cover sm:translate-y-[-37px] translate-y-[-34px] translate-x-[-30px] w-full sm:h-[239px] h-[204px] ${index % 2 === 1 ? 'hue-rotate-15' : ''}`} src={FolderView}></img>
-                                <div className="absolute top-[-2px] right-12 cursor-pointer bg-slate-300 p-[2px] opacity-25" onClick={() => handleDeleteGoalFolder(folder.id)}>
-                                    <span>
+                                <div className="absolute top-[-14px] right-[39px] cursor-pointer opacity-20 p-3" onClick={() => handleDeleteGoalFolder(folder.id)}>
+                                    <div className="bg-slate-300 p-[2px]">
                                         <img className="min-w-2 w-2" src={BoldCloseIcon}></img>
-                                    </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
