@@ -1,6 +1,7 @@
 import { useGoals } from "../context/GoalsContext";
 import FolderView from "../assets/icons/FolderView.svg";
 import BoldCloseIcon from "../assets/icons/BoldCloseIcon.svg";
+import CheckCompleteIcon from "../assets/icons/CheckCompleteIcon.svg"
 
 function FolderViewer() {
     const { goalOrganizer, handleOnChangeName, handleDeleteGoalFolder } = useGoals();
@@ -20,6 +21,13 @@ function FolderViewer() {
                                     <div className="bg-slate-300 p-[2px]">
                                         <img className="min-w-2 w-2" src={BoldCloseIcon}></img>
                                     </div>
+                                </div>
+                            </div>
+                            <div className="absolute w-1/4 text-gray-700 text-left top-[40px] -left-4">
+                                <div>
+                                    <div className="flex items-center sm:text-sm text-xs">
+                                        <img className="opacity-50 pr-1" src={CheckCompleteIcon}></img><span className="pr-1 font-medium">{folder.goalSet.filter(goal => goal.isComplete).length}</span>
+                                        de {folder.goalSet.length}</div>
                                 </div>
                             </div>
                         </div>
