@@ -22,6 +22,7 @@ function GoalFolder() {
             name: "",
             columns: window.innerWidth > 640 ? 3 : 2,
             isMinimize: false,
+            isVisible: true,
             goalSet: []
         };
 

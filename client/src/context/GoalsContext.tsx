@@ -5,6 +5,7 @@ export type GoalOrganizer = {
     name: string,
     columns: number,
     isMinimize: boolean,
+    isVisible: boolean,
     goalSet: GoalCards[],
 }
 
@@ -26,13 +27,15 @@ interface GoalsContextType {
     setGoalOrganizer: (goalOrganizer: GoalOrganizer[]) => void;
     handleOnChangeName: (e: React.ChangeEvent<HTMLInputElement>, id: number) => void;
     handleDeleteGoalFolder: (folderId: number) => void;
+    handleOnClickIsVisible: (folderId : number) => void;
 }
 
 const defaultState: GoalsContextType = {
     goalOrganizer: [],
     setGoalOrganizer: (_goalOrganizer: GoalOrganizer[]) => {},
     handleOnChangeName: (_e: React.ChangeEvent<HTMLInputElement>, _id: number) => {},
-    handleDeleteGoalFolder: (_folderId: number) => {}
+    handleDeleteGoalFolder: (_folderId: number) => {},
+    handleOnClickIsVisible: (_folderId: number) => {},
 }
 
 const GoalsContext = createContext(defaultState);
@@ -79,8 +82,21 @@ function GoalsContextProvider({ children }: GoalsProviderProps) {
         setGoalOrganizer(updatedGoalOrganizer);
     }
 
+    function handleOnClickIsVisible(folderId: number) {
+        const updatedGoalFolder = goalOrganizer.map((goalFolder) => {
+            if (goalFolder.id === folderId) {
+                return {
+                    ...goalFolder,
+                    isVisible: !goalFolder.isVisible,
+                };
+            }
+            return goalFolder;
+        });
+        setGoalOrganizer(updatedGoalFolder);
+    }
+
     return (
-        <GoalsContext.Provider value={{ goalOrganizer, setGoalOrganizer, handleOnChangeName, handleDeleteGoalFolder}}>
+        <GoalsContext.Provider value={{ goalOrganizer, setGoalOrganizer, handleOnChangeName, handleDeleteGoalFolder, handleOnClickIsVisible}}>
             {children}
         </GoalsContext.Provider>
     )
