@@ -119,7 +119,7 @@ function GoalSet({ goalset, folderId, folderName }: Props) {
           </div>
         </ul>
       </div>
-      <header className="flex items-center order-2 px-2 opacity-10">
+      <header className="flex items-center order-2 px-2 opacity-10 w-full">
         <input placeholder="Folder" className="bg-transparent sm:text-7xl text-5xl left-0 bottom-0 w-full uppercase placeholder-gray-950 placeholder-opacity-50 py-6" type="text" value={folderName} onChange={(e) => handleOnChangeName(e, folderId)}></input>
         <button className="pr-3 curso-pointer " onClick={handleMinimizeGoalFolder}>
           <img className="sm:min-w-5 sm:w-10 min-w-10" src={isMinimize ? PlusIcon : MinusIcon}></img>
