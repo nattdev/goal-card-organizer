@@ -32,8 +32,8 @@ function FolderViewer() {
                                         de {folder.goalSet.length}</div>
                                 </div>
                             </div>
-                            <div onClick={() => handleOnClickIsVisible(folder.id)} className="absolute top-[154px] opacity-65 -left-4">
-                                <img src={folder.isVisible ? ViewEyeIcon : ViewEyeSlashIcon}></img>
+                            <div onClick={() => handleOnClickIsVisible(folder.id)} className="absolute sm:top-[180px] top-[158px] opacity-65 -left-4 cursor-pointer">
+                                <img className="sm:w-auto w-5" src={folder.isVisible ? ViewEyeIcon : ViewEyeSlashIcon}></img>
                             </div>
                         </div>
                     </li>
