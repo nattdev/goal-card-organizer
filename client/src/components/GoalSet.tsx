@@ -103,7 +103,7 @@ function GoalSet({ goalset, folderId, folderName }: Props) {
   return (
     <div className={`flex flex-col items-center none ${goalset.isVisible ? "block" : "hidden"}`}>
       <div className={`w-full ${isMinimize ? "hidden" : "block"}`}>
-        <div className="pt-7 pb-3 flex justify-center px-6 w-full">
+        <div className="pt-7 pb-6 flex justify-center px-6 w-full">
           <button onClick={handleOnClickSetColumns}>
             <img src={ColumnsIcon}></img>
           </button>
