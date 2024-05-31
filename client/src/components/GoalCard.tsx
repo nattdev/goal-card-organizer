@@ -218,7 +218,7 @@ function GoalCard({ card, goalSetId }: Props) {
                         </li>
                     ))}
                 </ul>
-                <p className="w-fit" onClick={handleAddTask}>+ Añadir Tarea</p>
+                <p className="w-fit m-auto cursor-pointer" onClick={handleAddTask}>+ Añadir Tarea</p>
             </div>
         </div>
     );
