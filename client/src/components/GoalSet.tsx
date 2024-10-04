@@ -102,7 +102,7 @@ function GoalSet({ goalset, folderId, folderName }: Props) {
 
   return (
     <div className={`flex flex-col items-center none ${goalset.isVisible ? "block" : "hidden"}`}>
-      <div className={`w-full ${isMinimize ? "hidden" : "block"}`}>
+      <div className={`w-full order-2 ${isMinimize ? "hidden" : "block"}`}>
         <div className="pt-7 pb-6 flex justify-center px-6 w-full">
           <button onClick={handleOnClickSetColumns}>
             <img src={ColumnsIcon}></img>
@@ -119,7 +119,7 @@ function GoalSet({ goalset, folderId, folderName }: Props) {
           </div>
         </ul>
       </div>
-      <header className="flex items-center order-2 px-2 opacity-10 w-full">
+      <header className="flex items-center order-1 px-2 opacity-10 w-full">
         <input placeholder="Folder" className="bg-transparent sm:text-7xl text-5xl left-0 bottom-0 w-full uppercase placeholder-gray-950 placeholder-opacity-50 py-6" type="text" value={folderName} onChange={(e) => handleOnChangeName(e, folderId)}></input>
         <button className="pr-3 curso-pointer " onClick={handleMinimizeGoalFolder}>
           <img className="sm:min-w-5 sm:w-10 min-w-10" src={isMinimize ? PlusIcon : MinusIcon}></img>
