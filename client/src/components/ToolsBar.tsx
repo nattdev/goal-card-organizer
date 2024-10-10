@@ -7,7 +7,7 @@ function ToolsBar() {
     const demoHandle = () => {
         const demoData = [
             {
-                "id": 1,
+                "id": 199,
                 "name": "CURSOS DE TECNOLOGÍA",
                 "columns": 2,
                 "goalSet": [
@@ -131,7 +131,7 @@ function ToolsBar() {
                 "isVisible": true
             },
             {
-                "id": 2,
+                "id": 299,
                 "name": "AUTOESTUDIO",
                 "columns": 3,
                 "goalSet": [
@@ -179,7 +179,7 @@ function ToolsBar() {
                 "isVisible": true
             },
             {
-                "id": 3,
+                "id": 399,
                 "name": "SALUD Y ACONDICIONAMIENTO FÍSICO",
                 "columns": 1,
                 "goalSet": [
@@ -227,7 +227,7 @@ function ToolsBar() {
                 "isVisible": true
             },
             {
-                "id": 4,
+                "id": 499,
                 "name": "PROYECTOS PERSONALES",
                 "columns": 3,
                 "goalSet": [
@@ -275,7 +275,7 @@ function ToolsBar() {
                 "isVisible": true
             },
             {
-                "id": 5,
+                "id": 599,
                 "name": "DESARROLLO PROFESIONAL",
                 "columns": 2,
                 "goalSet": [
